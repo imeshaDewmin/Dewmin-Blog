@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userController from './controller/user.controller.js';
+import authController from './controller/auth.controller.js'
 
 dotenv.config();
 
@@ -16,9 +17,11 @@ mongoose.connect(
 
 const app = express();
 
+app.use(express.json());
+
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
 });
 
 app.use('/api/user', userController)
-
+app.use('/api/auth',authController )
